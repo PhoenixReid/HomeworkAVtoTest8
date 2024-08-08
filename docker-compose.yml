@@ -11,5 +11,5 @@ services:
     environment:
       MYSQL_RANDOM_ROOT_PASSWORD: 'yes'
       MYSQL_DATABASE: app
-      NYSQL_USER: app
+      MYSQL_USER: app
       MYSQL_PASSWORD: pass

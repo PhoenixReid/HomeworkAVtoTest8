@@ -34,19 +34,18 @@ public class AuthTest {
     void  positivAuthTest() {
         var user = getAuthInfo();
         var auth = loginPage.verifyLogin(user);
-        new VerifyCode().visiblePage();
+        auth.visiblePage();
         String code =  getVerificationCode();
         new VerifyCode().verifyCode(code);
-        Assertions.assertEquals( "  Личный кабинет",new PersonalCabinet().openPersonalCabinet() );
+        new PersonalCabinet().openPersonalCabinet("  Личный кабинет");
     }
 
     @Test
     void negativeAuthTest(){
         var user = getRandomAuthInfo();
         var auth =  loginPage.verifyLogin(user);
-        new VerifyCode().visibleError();;
-        String actual = new Auth().getError();
-        Assertions.assertEquals("Ошибка! Неверно указан логин или пароль", actual);
+        auth.visibleError();
+        new Auth().getError("Ошибка! Неверно указан логин или пароль");
 
     }
 
@@ -56,10 +55,9 @@ public class AuthTest {
         var auth =  loginPage.verifyLogin(user);
 
         var code = randomCode();
-        new VerifyCode().verifyCode(code.getCode());
-        new VerifyCode().visibleError();;
-        String actual = new VerifyCode().getError();
-        Assertions.assertEquals( "Ошибка! Неверно указан код! Попробуйте ещё раз." , actual);
+        auth.verifyCode(code.getCode());
+        auth.visibleError();
+        new VerifyCode().getError("Ошибка! Неверно указан код! Попробуйте ещё раз.");
 
     }
 

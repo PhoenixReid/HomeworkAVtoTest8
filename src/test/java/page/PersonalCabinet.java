@@ -10,7 +10,7 @@ import static com.codeborne.selenide.Selenide.$;
 public class PersonalCabinet {
     private final SelenideElement cabinet = $("[data-test-id=\"dashboard\"]");
 
-    public String openPersonalCabinet(){
-        return cabinet.shouldBe(Condition.visible, Duration.ofSeconds(3)).getText();
+    public void openPersonalCabinet(String expected){
+         cabinet.shouldBe(Condition.visible, Duration.ofSeconds(3)).shouldBe(Condition.text(expected));
     }
 }

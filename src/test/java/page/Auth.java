@@ -24,7 +24,7 @@ public class Auth {
         return new VerifyCode();
     }
 
-    public String getError(){
-        return error.$("[class=\"notification__content\"]").getText();
+    public void  getError(String expected){
+         error.$("[class=\"notification__content\"]").shouldBe(Condition.text(expected));
     }
 }

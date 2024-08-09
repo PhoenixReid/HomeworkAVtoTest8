@@ -17,14 +17,10 @@ public class VerifyCode {
         bottonCode.click();
     }
 
-    public void getError(String expected){
-         error.$("[class=\"notification__content\"]").shouldBe(Condition.text(expected));
-    }
+    public void getError(String expected) {
+        error.$("[class=\"notification__content\"]").shouldBe(Condition.text(expected));
 
-    public void visibleError(){
-        error.shouldBe(Condition.visible, Duration.ofSeconds(4));
     }
-
     public void visiblePage(){
         inpulVerefyCode.shouldBe(Condition.visible,Duration.ofSeconds(5));
 

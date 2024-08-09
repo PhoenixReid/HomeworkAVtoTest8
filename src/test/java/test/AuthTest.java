@@ -36,7 +36,7 @@ public class AuthTest {
         var auth = loginPage.verifyLogin(user);
         auth.visiblePage();
         String code =  getVerificationCode();
-        new VerifyCode().verifyCode(code);
+        auth.verifyCode(code);
         new PersonalCabinet().openPersonalCabinet("  Личный кабинет");
     }
 
@@ -44,8 +44,7 @@ public class AuthTest {
     void negativeAuthTest(){
         var user = getRandomAuthInfo();
         var auth =  loginPage.verifyLogin(user);
-        auth.visibleError();
-        new Auth().getError("Ошибка! Неверно указан логин или пароль");
+       auth.getError("Ошибка! Неверно указан логин или пароль");
 
     }
 
@@ -53,11 +52,9 @@ public class AuthTest {
     void negativeVerificationCode(){
         var user = getAuthInfo();
         var auth =  loginPage.verifyLogin(user);
-
         var code = randomCode();
         auth.verifyCode(code.getCode());
-        auth.visibleError();
-        new VerifyCode().getError("Ошибка! Неверно указан код! Попробуйте ещё раз.");
+       auth.getError("Ошибка! Неверно указан код! Попробуйте ещё раз.");
 
     }
 
